@@ -28,30 +28,80 @@ INSERT INTO LIVROS VALUES('O poder da mente','Clara Mafra','F',120,'Continental'
 SELECT * FROM LIVROS;
 
 /* 2) TRAZER O NOME DO LIVRO E O NOME DA EDITORA */
- 
-SELECT LIVRO, EDITORA 
+
+SELECT LIVRO, EDITORA
 FROM LIVROS;
 
 /* 3) TRAZER O NOME DO LIVRO E A UF DOS LIVROS PUBLICADOS POR AUTORES DO SEXO MASCULINO */
 
-SELECT LIVRO, UF 
-FROM LIVROS 
+SELECT LIVRO, UF
+FROM LIVROS
 WHERE SEXO = 'M';
 
 /* 4) TRAZER O NOME DO LIVRO E O NUMERO DE PAGINAS DOS LIVROS POR AUTORES DO SEXO FEMENINO */
 
-SELECT LIVRO, PAGINAS 
-FROM LIVROS 
+SELECT LIVRO, PAGINAS
+FROM LIVROS
 WHERE SEXO = 'F';
 
 /* 5) TRAZER OS VALORES DOS LIVROS DAS EDITORAS DE SAO PAULO */
 
-SELECT VALOR 
-FROM LIVROS 
+SELECT VALOR
+FROM LIVROS
 WHERE UF = 'SP';
 
 /* 6) TRAZER OS DADOS DOS AUTORES DO SEXO MASCULINO QUE TIVERAM LIVROS PUBLICADOS POR SAO PAULO E RIO DE JANEIRO */
 
-SELECT AUTOR, SEXO
-FROM LIVROS 
+SELECT AUTOR, SEXO, UF
+FROM LIVROS
 WHERE (UF = 'SP' OR UF = 'RJ') AND SEXO='M';
+
+
+
+
+create database exercicio;
+
+use exercicio;
+
+create table funcionarios
+  (
+      idFuncionario integer,
+      nome varchar(100),
+      email varchar(200),
+      sexo varchar(10),
+      departamento varchar(100),
+      admissao varchar(10),
+      salario integer,
+      cargo varchar(100),
+      idRegiao int
+  );
+
+SELECT COUNT(*) AS 'Quantidade de Reg. Tab. Funcionarios' from funcionarios;
+
+SELECT COUNT(*), departamento
+FROM funcionarios
+GROUP BY departamento
+ORDER BY 1;
+
+SELECT sexo,COUNT(*)
+FROM funcionarios
+GROUP BY sexo;
+
+/* 21 Filmes
+   53 Roupas
+	 52 Lar
+*/
+
+SELECT *
+FROM funcionarios
+WHERE departamento='roupas'
+OR departamento='filmes';
+
+SELECT *
+FROM funcionarios
+WHERE (departamento='roupas' OR departamento='lar') AND sexo='Feminino';
+
+SELECT nome,sexo,departamento
+FROM funcionarios
+WHERE sexo = 'Masculino'
+OR departamento = 'Jardim';
