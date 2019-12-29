@@ -99,7 +99,7 @@ OR departamento='filmes';
 
 SELECT *
 FROM funcionarios
-WHERE (departamento='roupas' OR departamento='lar') AND sexo='Feminino';
+WHERE (departamento='lar' OR departamento='roupas') AND sexo='Feminino';
 
 SELECT nome,sexo,departamento
 FROM funcionarios
